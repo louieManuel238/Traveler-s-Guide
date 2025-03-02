@@ -1,5 +1,7 @@
 import React from 'react';
-import DiscoverCard from './DiscoverCard';
+import DiscoverCard from '../DiscoverCards/DiscoverCards';
+
+import './Discover.scss';
 
 const Discover = () => {
     const discoverItems = [
@@ -10,12 +12,12 @@ const Discover = () => {
     ];
 
     return (
-        <div className="discover-container">
-            <h2>Top Destinations</h2>
+        <section className="discover-container" >
+            <h2 id='discover'>Top Destinations</h2>
             {discoverItems.map(item => (
                 <DiscoverCard key={item.id} title={item.title} description={item.description} />
             ))}
-        </div>
+        </section>
     );
 };
 

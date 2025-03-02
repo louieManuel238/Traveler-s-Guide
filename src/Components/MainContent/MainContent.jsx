@@ -1,11 +1,15 @@
 import CreateSearch from "../CreateSearch/CreateSearch"
+import Discover from "../Discover/Discover";
+import './MainContent.scss';
 
 const MainContent = () =>{
     return(
-        <div 
+        <main 
         className="main-content">
             <CreateSearch/>
-        </div>
+            <Discover/>
+            
+        </main>
     )
 }
 export default MainContent;

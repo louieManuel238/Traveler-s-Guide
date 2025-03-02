@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.22.0",
+    "axios": "^1.8.1",
+    "framer-motion": "^12.4.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-aria-components": "^1.6.0",
+    "react-dom": "^19.0.0",
+    "react-google-autocomplete": "^2.7.4",
+    "sass": "^1.85.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

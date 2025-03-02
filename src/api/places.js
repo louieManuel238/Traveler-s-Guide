@@ -6,14 +6,12 @@ async function findPlaces(request, map) {
   const { places } = await Place.searchByText(request);
 
   if (places.length) {
-    console.log(places)
+    // console.log(places)
     
     const { LatLngBounds } = await google.maps.importLibrary("core");
     const bounds = new LatLngBounds();
 
     
-
-
     // Loop through and get all the results.
     places.forEach((place) => {
       const markerView = new AdvancedMarkerElement({

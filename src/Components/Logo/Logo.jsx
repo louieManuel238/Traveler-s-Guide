@@ -1,6 +1,6 @@
 
 const Logo = () => {
-    return <h1 className="logo">Tales & Trails</h1>;
+    return <h1 className="logo">Traveler's Guide</h1>;
 }
 
 export default Logo;
