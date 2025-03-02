@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Autocomplete from "react-google-autocomplete";
 
 
-const AutoCompleteAddressSearch = () => {
+const AutoCompleteAddressSearch = ({setPlace}) => {
     
     const searchBarRef = useRef(null);
     const [isPlacesLibraryLoaded, setIsPlacesLibraryLoaded] = useState(false);
@@ -20,14 +19,19 @@ const AutoCompleteAddressSearch = () => {
         }
       }
       loadPlacesLibrary();
-      console.log("loaoded")
     }, [isPlacesLibraryLoaded]);
 
     useEffect(() => {
         if (isPlacesLibraryLoaded) {
             if(!placeAutocomplete.current){
                 placeAutocomplete.current = new google.maps.places.PlaceAutocompleteElement();
-                if (searchBarRef.current) searchBarRef.current.appendChild(placeAutocomplete.current);
+                if (searchBarRef.current) {
+                    searchBarRef.current.addEventListener('gmp-placeselect', async ({place}) => {
+                        await place.fetchFields({fields: ["displayName", "formattedAddress", "location"]})
+                        setPlace(JSON.stringify(place.toJSON(), null,2,))
+                    });
+                    searchBarRef.current.appendChild(placeAutocomplete.current);
+                }
             }
         }
         return () => {
@@ -37,7 +41,7 @@ const AutoCompleteAddressSearch = () => {
             }
         };
     }, [isPlacesLibraryLoaded]);
-
+    
     return (
         <div id='search-bar' className='search-section__search-bar' ref={searchBarRef}></div>
     );

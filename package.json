@@ -15,8 +15,8 @@
     "framer-motion": "^12.4.7",
     "react": "^19.0.0",
     "react-aria-components": "^1.6.0",
+    "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
-    "react-google-autocomplete": "^2.7.4",
     "sass": "^1.85.1"
   },
   "devDependencies": {
