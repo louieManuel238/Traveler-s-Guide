@@ -12,7 +12,7 @@ import MainContent from './Components/MainContent/MainContent';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  //GenerateResponse();
+  // GenerateResponse();
   return (
     
      
