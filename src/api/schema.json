@@ -29,11 +29,11 @@
                   "type": "object",
                   "properties": {
                     "lat": {
-                      "type": "string",
+                      "type": "number",
                       "description": "Latitude of the location."
                     },
                     "lng": {
-                      "type": "string",
+                      "type": "number",
                       "description": "Longitude of the location."
                     }
                   },

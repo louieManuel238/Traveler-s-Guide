@@ -2,11 +2,11 @@ import CreateSearch from "../CreateSearch/CreateSearch"
 import Discover from "../Discover/Discover";
 import './MainContent.scss';
 
-const MainContent = () =>{
+const MainContent = ({setJsonResult}) =>{
     return(
         <main 
         className="main-content">
-            <CreateSearch/>
+            <CreateSearch setJsonResult={setJsonResult}/>
             <Discover/>
             
         </main>
