@@ -5,6 +5,7 @@ const Map = ({data, setShouldFetchPlaces}) => {
   
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
+  const markersRef = useRef([]);
   const center = { lat: 37.4161493, lng: -122.0812166 };
 
   console.log(data)
@@ -36,16 +37,20 @@ const Map = ({data, setShouldFetchPlaces}) => {
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
         const { LatLng } = await google.maps.importLibrary("core");
 
+        markersRef.current.forEach(marker => marker.setMap(null));
+        markersRef.current = [];
+
         if (data && Object.keys(data).length !== 0) {
           // console.log(data.Activities);
           data.Activities.forEach((item) => {
             if (item.activity) {
               item.activity.forEach((activity) => {
-                    const position = new LatLng(activity.location);
-                    new AdvancedMarkerElement({
-                      map: mapInstanceRef.current,
-                      position: position,
-                    });
+                const position = new LatLng(activity.location);
+                const marker = new AdvancedMarkerElement({
+                  map: mapInstanceRef.current,
+                  position: position,
+                });
+                 markersRef.current.push(marker)   
               });
             }
           })

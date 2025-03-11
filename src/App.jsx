@@ -76,7 +76,7 @@ function App() {
       </section>
         <MainContent setJsonResult={setJsonResult}/>
         <div>
-            {!shouldFetchPlaces && <Itinerary data={data}/>}
+            {!shouldFetchPlaces && Object.keys(data).length !== 0 &&<Itinerary data={data}/>}
         </div>
         <Map data={data} setShouldFetchPlaces={setShouldFetchPlaces}/>
       </>

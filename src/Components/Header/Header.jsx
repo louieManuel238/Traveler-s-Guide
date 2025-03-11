@@ -25,7 +25,7 @@ import './header.scss'
                 transition={{type: 'inertia', velocity: 40, repeat: Infinity, repeatDelay: 3} }
               
             >
-                <a href='#discover' className='arrow-down-button'><ArrowIcon/></a>
+                <a href='#main-content' className='arrow-down-button'><ArrowIcon/></a>
             </motion.div>
             
        </article>

@@ -4,10 +4,12 @@ import './MainContent.scss';
 
 const MainContent = ({setJsonResult}) =>{
     return(
-        <main 
-        className="main-content">
-            <CreateSearch setJsonResult={setJsonResult}/>
-            <Discover/>
+        <main className="main-content" id="main-content">
+            <div className="main-content__container">
+                <CreateSearch setJsonResult={setJsonResult}/>
+                <Discover/>
+            </div>
+            
             
         </main>
     )

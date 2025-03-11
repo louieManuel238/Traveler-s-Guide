@@ -1,6 +1,6 @@
 .header{
     width: 100%;
-    height: 90vh;
+    height: calc(100vh - 4rem);
     // background-image: url('../../assets/pexels-header-background.jpg');
     background-image: linear-gradient(#ffffff50, #ffffff05,#F6F7F899),url('../../assets/pexels-header-background.jpg');
 
@@ -14,7 +14,7 @@
 
     &__call-to-action{
         width: 100%;
-        margin-bottom: 10%;
+        bottom: 0;
         font-size: 1.5rem;
         line-height: 4rem;
         text-align: center;
