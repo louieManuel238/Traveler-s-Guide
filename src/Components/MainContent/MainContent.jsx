@@ -1,11 +1,21 @@
+import { useScroll } from "framer-motion";
 import CreateSearch from "../CreateSearch/CreateSearch"
+import Discover from "../Discover/Discover";
+import './MainContent.scss';
+import { useRef } from "react";
 
-const MainContent = () =>{
+const MainContent = ({setJsonResult}) =>{
+    const ref = useRef(null);
+    const {scrollY} = useScroll({target: ref, offset:["start end", "end end"]});
     return(
-        <div 
-        className="main-content">
-            <CreateSearch/>
-        </div>
+        <main className="main-content" id="main-content" ref={ref}>
+            <div className="main-content__container">
+                <CreateSearch setJsonResult={setJsonResult}/>
+                <Discover/>
+            </div>
+            
+            
+        </main>
     )
 }
 export default MainContent;
