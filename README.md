@@ -24,9 +24,9 @@ The primary users of Traveler's Guide are individuals or groups planning trips, 
 ### Tech Stack
 
 - **Frontend**: React.js, , SCSS
-- **Backend**: Node.js with Express.js for server-side logic and API management.
-- **Database**: MongoDB for storing user data, travel information, and itineraries.
-- **Libraries**: Axios for API requests, Framer Motion
+- **Backend**: Node.js with Express.js for server-side logic and API management. (Optional)
+- **Libraries**: Axios for API requests, Framer Motion, Material UI
+- **Database**: (database is optional) I Will be using Local storage to save itenerary
 
 ### APIs
 - **Gemini AI**: For generating the travel itenerary
@@ -36,11 +36,12 @@ The primary users of Traveler's Guide are individuals or groups planning trips, 
 
 ### Sitemap
 
-- **Home Page**: Introduction to the app and featured destinations.
-- *Search Page**: Search tool for finding destinations and accommodations.
-- **Destination Page**: Detailed information about a selected destination.
-- **Itinerary Page**: Tool for creating and managing travel itineraries.
-- **Profile Page**: User account management and saved *trips.
+**SINGLE PAGE APPLICATION**
+- **Header**: Logo and initial view when the app is opened
+- **Search Section**: Search form to specify the parameters of itineraries (Place/Location, start and end date, preferences).
+- **Discover Section**: A section with pre-determined / top travel destinations (optional)
+- **Itinerary Section**: List of generated activities for each day in the itenerary
+- **Map Section**: Map with markers for each place in the itenerary
 
 ### Mockups
 
@@ -48,81 +49,25 @@ Visuals of the app's screens will be provided using Figma, showcasing the layout
 
 ### Data
 
-The app will store data on destinations, user profiles, itineraries, and accommodation bookings. Relationships between data points include user profiles linked to their saved itineraries and bookings.
+Generated itenerary
 
-### Endpoints
+### Endpoints (If Backend is implemented)
 
 - **GET /destinations**: Retrieve a list of destinations.
-- **POST /itineraries**: Create a new itinerary.
-- **GET /itineraries/:id**: Retrieve a specific itinerary.
-- **PUT /itineraries/:id**: Update an existing itinerary.
-- **DELETE /itineraries/:id**: Delete an itinerary.
+- **POST /itineraries**: Create a new itinerary using posted prompt.
 
 ## Roadmap
 
 The project will be scoped as a sprint with the following tasks:
-- Week 1-2: Research and planning, including tech stack selection and API research.
-- Week 3-4: Frontend development, focusing on the home page and search functionality.
-- Week 5-6: Backend development, including API integration and database setup.
-- Week 7-8: Itinerary planner and user profile features.
-- Week 9-10: Testing, debugging, and final adjustments.
+- Week 1: Research and planning, including tech stack selection and API research, search functionality, and Itenerary Generation.
+- Week 2: Frontend development, continue search functionality, and Itenerary Generation; Map markers, places information, UI/UX design.
 
 ---
 
 ## Future Implementations
 
-- **Social Sharing**: Allow users to share their itineraries and travel experiences on social media.
-- **User Reviews**: Enable users to leave reviews and ratings for destinations and accommodations.
-- **Enhanced Personalization**: Use machine learning to provide personalized travel recommendations based on user preferences and past behavior.
-- **Integration with Travel Services**: Partner with airlines, car rental services, and local tour operators to offer comprehensive travel packages.
-
-
-What is your app? Give a brief description in a couple of sentences.
-
-### Problem Space
-
-Why is your app needed? Give any background information around any pain points or other reasons.
-
-### User Profile
-
-Who will use your app? How will they use it? Add any special considerations that your app must take into account.
-
-### Features
-
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
-
-## Implementation
-
-### Tech Stack
-
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
-
-### APIs
-
-List any external sources of data that will be used in your app.
-
-### Sitemap
-
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
-
-### Mockups
-
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
-
-### Data
-
-Describe your data and the relationships between the data points. You can show this visually using diagrams, or write it out. 
-
-### Endpoints
-
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
-
-## Roadmap
-
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date. 
-
----
-
-## Future Implementations
-Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
+- **Login Feature**: Allow users to login, and have their itineraries saved
+- **Backend**
+- **Database Implementation**:Having a database to save information of user and iteneraries
+- **Integration with Booking.com API**: Booking API to add function of searching and booking accomodations
 

@@ -19,6 +19,7 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
         }
       }
       loadPlacesLibrary();
+     
     }, [isPlacesLibraryLoaded]);
 
     useEffect(() => {

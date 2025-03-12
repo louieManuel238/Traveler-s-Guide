@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-
-
+import {ArrowIcon} from '../../assets/SVG.jsx'
+import './Maps.scss';
 const Map = ({data, setShouldFetchPlaces}) => {
   
   const mapRef = useRef(null);
@@ -15,13 +15,14 @@ const Map = ({data, setShouldFetchPlaces}) => {
     async function initMap() {
       try{
         const { Map } = await google.maps.importLibrary("maps");
-
-  
         mapInstanceRef.current = ( new Map(mapRef.current, {
           streetViewControl: false,
           center: center,
           zoom: 4,
+          minZoom: 2,
+          maxZomm: 12,
           mapId: import.meta.env.VITE_MAP_ID,
+          gestureHandling: "greedy"
         }))
       
       } catch(error){
@@ -65,7 +66,18 @@ const Map = ({data, setShouldFetchPlaces}) => {
 
 
   
-    return(<div className="map" ref={mapRef}></div>);
+    return(
+      <div className="map-container">
+      <div className="map-container__arrow">
+        <a href="#main-content">
+          <ArrowIcon/>
+        </a>
+        </div>
+      
+        <div className="map" ref={mapRef}></div>
+      
+      </div>
+    );
 }
 
 export default Map;

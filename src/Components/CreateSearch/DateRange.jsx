@@ -3,9 +3,6 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
 const DateRange = ({startDate, endDate, setStartDate, setEndDate}) => {
 
 
@@ -15,15 +12,16 @@ const DateRange = ({startDate, endDate, setStartDate, setEndDate}) => {
     setEndDate(end);
   };
 
-  return <DatePicker 
-    showIcon
-    selected={startDate} 
-    onChange={onChange}
-    startDate={startDate}
-    endDate={endDate}
-    selectsRange
-    
- />;
+  return (
+    <DatePicker 
+      showIcon
+      selected={startDate} 
+      onChange={onChange}
+      startDate={startDate}
+      endDate={endDate}
+      selectsRange
+  />
+  )
 };
 
 export default DateRange;
