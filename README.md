@@ -45,7 +45,11 @@ The primary users of Traveler's Guide are individuals or groups planning trips, 
 
 ### Mockups
 
-Visuals of the app's screens will be provided using Figma, showcasing the layout and design of key pages such as the home page, search page, and itinerary planner.
+![1](https://github.com/user-attachments/assets/5fa24940-6c18-4a4a-81c3-243830c311ac)
+![2](https://github.com/user-attachments/assets/24257313-d07f-49a7-ba5b-60c0fc6e231d)
+![3](https://github.com/user-attachments/assets/01d4e998-022e-42cd-b8ae-d860805d0a0e)
+![4](https://github.com/user-attachments/assets/8fa73330-aa89-40cb-9b38-e58a73f1b643)
+![5](https://github.com/user-attachments/assets/d1f9e18b-df43-4b52-88e4-70c58bfdfb36)
 
 ### Data
 
