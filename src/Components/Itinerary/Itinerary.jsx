@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 const Itinerary = ({ data }) => {
-  
+    
     return (
         <div>
             <h1>{data.Title}</h1>

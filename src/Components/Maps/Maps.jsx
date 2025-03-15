@@ -1,17 +1,14 @@
 import { useEffect, useRef } from "react";
 import {ArrowIcon} from '../../assets/SVG.jsx'
 import './Maps.scss';
-const Map = ({data, setShouldFetchPlaces}) => {
+const Map = ({data}) => {
   
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
   const center = { lat: 37.4161493, lng: -122.0812166 };
 
-  console.log(data)
-
   useEffect(() => {
-    
     async function initMap() {
       try{
         const { Map } = await google.maps.importLibrary("maps");
@@ -22,6 +19,10 @@ const Map = ({data, setShouldFetchPlaces}) => {
           minZoom: 2,
           maxZomm: 12,
           mapId: import.meta.env.VITE_MAP_ID,
+          restriction: {
+            latLngBounds: {north: 85, south: -85, west: -180, east: 180},
+            strictBounds: false,
+          },
           gestureHandling: "greedy"
         }))
       
@@ -42,7 +43,6 @@ const Map = ({data, setShouldFetchPlaces}) => {
         markersRef.current = [];
 
         if (data && Object.keys(data).length !== 0) {
-          // console.log(data.Activities);
           data.Activities.forEach((item) => {
             if (item.activity) {
               item.activity.forEach((activity) => {
