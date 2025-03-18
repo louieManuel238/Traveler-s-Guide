@@ -1,16 +1,18 @@
-import React from 'react';
+import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Typography } from "@mui/material";
 
-const Budget = () => {
+const Budget = ({setBudget, budget}) => {
     return (
-        <div>
-            <h2>Budget Vibes</h2>
-            <p>Spending Style:</p>
-            <select>
-                <option>Budget Backpacker 🎒</option>
-                <option>Mid-Range Explorer 💼</option>
-                <option>Luxury Seeker 💎</option>
-            </select>
-        </div>
+        <section className="form-container__form">
+            <Typography variant="h2" gutterBottom className='search-section__header'>💰 Budget Vibes</Typography>
+            <FormControl className="search-section__body">
+                <FormLabel>Spending Style:</FormLabel>
+                <RadioGroup value={budget} onChange={(e)=>setBudget(e.target.value)}>
+                    <FormControlLabel value="budget" control={<Radio/>} label="Budget Backpacker 🎒" />
+                    <FormControlLabel value="mid-range" control={<Radio />} label="Mid-Range Explorer 💼" />
+                    <FormControlLabel value="luxury" control={<Radio />} label="Luxury Seeker 💎" />
+                </RadioGroup>
+            </FormControl>
+        </section>
     );
 };
 

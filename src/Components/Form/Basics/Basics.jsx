@@ -1,15 +1,14 @@
 import AutoCompleteAddressSearch from "./AutoCompleteAddressSearch";
-import DateRange from "./DateRange";
+import { Typography } from "@mui/material";
 
-const Basics = ({setEndDate,setStartDate,setPlace, startDate, endDate}) => {
+const Basics = ({setPlace}) => {
     return (
-        <div>
+        <section className="form-container__form">
+             <Typography variant="h2" gutterBottom className='search-section__header'>🌍 Where do you want to go?</Typography>
+            <div className="search-section__body">
             <AutoCompleteAddressSearch setPlace={setPlace}/>
-            <DateRange 
-                startDate={startDate} setStartDate={setStartDate}
-                endDate={endDate} setEndDate={setEndDate}
-            />
-        </div>
+            </div>
+        </section>
     );
 };
 

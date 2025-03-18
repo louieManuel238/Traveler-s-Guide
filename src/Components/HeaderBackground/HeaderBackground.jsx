@@ -1,8 +1,9 @@
 import {motion, useScroll, useTransform} from 'framer-motion';
 import {useRef} from 'react';
-import {ArrowIcon} from '../../assets/SVG.jsx'
 
+import { DoubleArrowDown } from '../SVG/Arrow.jsx';
 import './HeaderBackground.scss';
+
 
 const HeaderBackground = () => {
     const ref = useRef(null);
@@ -11,7 +12,7 @@ const HeaderBackground = () => {
         offset: ["start start", "end start"]
     });
     const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-    const textY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+    const textY = useTransform(scrollYProgress, [0, 1], ['0%', '500%']);
     return(
         <div ref={ref} className='header-background'>
             
@@ -25,7 +26,7 @@ const HeaderBackground = () => {
                     animate={{y:5}}
                     transition={{type: 'inertia', velocity: 40, repeat: Infinity, repeatDelay: 3} }
                 >
-                    <a href='#main-content' className='arrow-down-button'><ArrowIcon/></a>
+                    <a href='#main-content' className='arrow-down-button'><DoubleArrowDown/></a>
         </motion.div>
         </div>
         </div>

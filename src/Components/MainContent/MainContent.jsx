@@ -11,7 +11,6 @@ const MainContent = ({setJsonResult}) =>{
         <main className="main-content" id="main-content" ref={ref}>
             <div className="main-content__container">
                 <CreateSearch setJsonResult={setJsonResult}/>
-                <Discover/>
             </div>
             
             

@@ -1,59 +1,60 @@
-import React from 'react';
+import { Box, Typography, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+const OtherPreference = ({dietaryRestrictions, setDietaryRestrictions, specialRequirements, setSpecialRequirements}) => {
+    const handleDietaryChange = (event) => {
+        setDietaryRestrictions({
+            ...dietaryRestrictions,
+            [event.target.value]: event.target.checked,
+        });
+    };
 
-const OtherPreference = () => {
+    const handleSpecialChange = (event) => {
+        setSpecialRequirements({
+            ...specialRequirements,
+            [event.target.value]: event.target.checked,
+        });
+    };
+
     return (
-        <div>
-            <h2>🌱 Preferences & Needs</h2>
-            
-            <fieldset>
-                <legend>Dietary Restrictions:</legend>
-                <label><input type="checkbox" name="dietary" value="vegetarian" />Vegetarian 🌱</label>
-                <label>
-                    <input type="checkbox" name="dietary" value="vegan" />
-                    Vegan 🥑
-                </label>
-                <label>
-                    <input type="checkbox" name="dietary" value="gluten-free" />
-                    Gluten-Free 🚫🌾
-                </label>
-                <label>
-                    <input type="checkbox" name="dietary" value="none" />
-                    None!
-                </label>
-            </fieldset>
+        <Box>
+            <Typography variant="h2" gutterBottom className='search-section__header'>🌱 Preferences & Needs</Typography>
+            <div className='search-section__body'>
+                <FormControl component="fieldset" margin="normal">
+                    <FormLabel component="legend">Dietary Restrictions:</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox name="dietary" value="vegetarian" checked={dietaryRestrictions.vegetarian} onChange={handleDietaryChange} />}
+                            label="Vegetarian 🌱"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox name="dietary" value="vegan" checked={dietaryRestrictions.vegan} onChange={handleDietaryChange} />}
+                            label="Vegan 🥑"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox name="dietary" value="glutenFree" checked={dietaryRestrictions.glutenFree} onChange={handleDietaryChange} />}
+                            label="Gluten-Free 🚫🌾"
+                        />
+                    </FormGroup>
+                </FormControl>
 
-            <fieldset>
-                <legend>Special Requirements:</legend>
-                <label>
-                    <input type="checkbox" name="special" value="accessibility" />
-                    Accessibility Needs ♿
-                </label>
-                <label>
-                    <input type="checkbox" name="special" value="pet-friendly" />
-                    Pet-Friendly 🐾
-                </label>
-                <label>
-                    <input type="checkbox" name="special" value="kid-friendly" />
-                    Kid-Friendly 👶
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Climate Preference:</legend>
-                <label>
-                    <input type="checkbox" name="climate" value="sunny-warm" />
-                    Sunny & Warm ☀️
-                </label>
-                <label>
-                    <input type="checkbox" name="climate" value="cool-crisp" />
-                    Cool & Crisp ❄️
-                </label>
-                <label>
-                    <input type="checkbox" name="climate" value="no-preference" />
-                    No Preference 🌈
-                </label>
-            </fieldset>
-        </div>
+                <FormControl component="fieldset" margin="normal">
+                    <FormLabel component="legend">Special Requirements:</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox name="special" value="accessibility" checked={specialRequirements.accessibility} onChange={handleSpecialChange} />}
+                            label="Accessibility Needs ♿"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox name="special" value="petFriendly" checked={specialRequirements.petFriendly} onChange={handleSpecialChange} />}
+                            label="Pet-Friendly 🐾"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox name="special" value="kidFriendly" checked={specialRequirements.kidFriendly} onChange={handleSpecialChange} />}
+                            label="Kid-Friendly 👶"
+                        />
+                    </FormGroup>
+                </FormControl>
+            </div>
+        </Box>
     );
 };
 

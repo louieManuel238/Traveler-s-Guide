@@ -1,7 +1,7 @@
 .map-container{
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    height: calc(100% - 30%);
+    width: calc(100% - 40%);
     &__arrow{
         width: 100%;
         padding: 3rem;

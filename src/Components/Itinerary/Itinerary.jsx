@@ -1,24 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Itinerary = ({ data }) => {
     
+    const days = data.Activities;
+    console.log(days)
+    const [filteredDays, setFilteredDays] = useState(days);
+
+    const filterByDate = (date) => {
+        const filtered = days.filter((activity) => activity.day === date);
+        setFilteredDays(filtered);
+    };
+
     return (
         <div>
+            {days.map((day)=> (<div>{day.day}</div>))}
             <h1>{data.Title}</h1>
             <p>{data.NoteForItinerary}</p>
-            {data.Activities.map((activity, index) => (
-                <div key={index}>
-                    <h2>{activity.day}</h2>
-                    <p>{activity.noteForTheDay}</p>
-                    {activity.activity.map((act, idx) => (
-                        <div key={idx}>
+            
+                <div>
+                    <h2>{filteredDays.day}</h2>
+                    <p>{filteredDays.noteForTheDay}</p>
+{/* 
+                    {filteredDays.activity.map((act, index) => (
+                        <div key={index}>
                             <h3>{act.place}</h3>
                             <p>{act.description}</p>
                             <p>Location: {act.location.lat}, {act.location.lng}</p>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
-            ))}
+            
         </div>
     );
 };
