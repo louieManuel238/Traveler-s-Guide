@@ -12,7 +12,7 @@ const HeaderBackground = () => {
         offset: ["start start", "end start"]
     });
     const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-    const textY = useTransform(scrollYProgress, [0, 1], ['0%', '500%']);
+    const textY = useTransform(scrollYProgress, [0, 1], ['0%', '130%']);
     return(
         <div ref={ref} className='header-background'>
             

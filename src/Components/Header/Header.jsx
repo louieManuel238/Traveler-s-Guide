@@ -1,8 +1,5 @@
-import {motion} from 'framer-motion';
-
 import './header.scss'
 import HeaderBackground from '../HeaderBackground/HeaderBackground.jsx';
-import {ArrowIcon} from '../../assets/SVG.jsx'
 
  const Header = () => {
   
