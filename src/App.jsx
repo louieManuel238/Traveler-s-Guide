@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 function App() {
 
   const [jsonResult,setJsonResult] = useState({});
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,16 +20,13 @@ function App() {
     };
     getData();
   }, [jsonResult]);
-
   return (
-      <>
-        <IntroSection/>
-        <FormsSection setJsonResult={setJsonResult}/>
-        <ItinerarySection data={data}/>
-      </>
-
-  
-  );
+    <>
+      <IntroSection/>
+      <FormsSection setJsonResult={setJsonResult}/>
+       <ItinerarySection data={data}/>
+    </>
+    );
 }
 
 export default App

@@ -4,9 +4,9 @@
   padding: 1rem 1rem;
   display: flex;
   flex-flow: column wrap;
-  height: 100vh;
-  @include desktop{
   
+  @include desktop{
+    height: 100vh;
     flex-flow: row-reverse;
   }
 }

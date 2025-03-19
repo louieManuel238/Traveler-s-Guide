@@ -16,8 +16,9 @@
 
     }
     @include desktop{
-        
+        padding-left: 1rem;
         margin-top: 300px;
+        height: 65%;
     }
 }
 .map{

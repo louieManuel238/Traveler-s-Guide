@@ -4,7 +4,7 @@ import Map from '../../Components/Maps/Maps';
 import './ItinerarySection.scss';
 import { Typography, Box } from '@mui/material';
 
-const data = {
+const data1 = {
     "Activities": [
         {
             "activity": [
@@ -178,19 +178,20 @@ const data = {
     "Title": "Kyoto Solo Travel Itinerary",
     "NoteForItinerary": "This itinerary focuses on relaxation, culture, and food, suitable for a solo traveler on a budget, staying in hostels, with a balanced pace. Transportation is flexible. No dietary restrictions considered."
 }
-const ItinerarySection = () => {
-
+const ItinerarySection = ({data}) => {
+    
     return (
         <div className='itinerary-map'>
+            {data && Object.keys(data).length !== 0 &&
              <Box className='itinerary-panel__header'>
                 <Typography variant="h2" gutterBottom className='itinerary-panel__main-header'>{data.Title}</Typography>
                 <h3 className='itinerary-panel__sub-header'>{data.NoteForItinerary}</h3>
-            </Box>
+            </Box>}
            
             {/* {data && Object.keys(data).length !== 0 && <Itinerary data={data} />} */}
 
             <Map data={data} />
-            <Itinerary data={data}/>
+            {data && Object.keys(data).length !== 0 && <Itinerary data={data}/>}
       
         </div>
     );

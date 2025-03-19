@@ -7,6 +7,9 @@
     }
     &__sub-header{
         font-size: 1.25rem;
+        @include desktop{
+            width: 90%;
+        }
     }
     &__body{
         padding-top: 3rem;
@@ -17,7 +20,6 @@
     @include desktop{
         position: relative;
         margin-top: 300px;
-
     }
 }
 .itinerary-list{
@@ -48,5 +50,10 @@
     &__places{
         background-color: $color-white-20;
     }
-
+    &__name{
+        font-weight: bold;
+    }
+    &__description{
+        color: $color-black-800;
+    }
 }
