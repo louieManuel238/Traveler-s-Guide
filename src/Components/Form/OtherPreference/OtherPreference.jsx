@@ -1,4 +1,6 @@
-import { Box, Typography, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { Typography, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import {motion} from 'framer-motion';
+
 const OtherPreference = ({dietaryRestrictions, setDietaryRestrictions, specialRequirements, setSpecialRequirements}) => {
     const handleDietaryChange = (event) => {
         setDietaryRestrictions({
@@ -15,7 +17,11 @@ const OtherPreference = ({dietaryRestrictions, setDietaryRestrictions, specialRe
     };
 
     return (
-        <Box>
+        <motion.section className='form-container__form'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{duration: 1}}
+        >
             <Typography variant="h2" gutterBottom className='search-section__header'>🌱 Preferences & Needs</Typography>
             <div className='search-section__body'>
                 <FormControl component="fieldset" margin="normal">
@@ -54,7 +60,7 @@ const OtherPreference = ({dietaryRestrictions, setDietaryRestrictions, specialRe
                     </FormGroup>
                 </FormControl>
             </div>
-        </Box>
+        </motion.section>
     );
 };
 

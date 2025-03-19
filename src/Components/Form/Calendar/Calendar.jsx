@@ -5,6 +5,7 @@ import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns';
 import { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
+import {motion} from 'framer-motion';
 
 const Calendar = ({setStartDate, setEndDate}) => {
     const [state, setState] = useState([
@@ -27,7 +28,11 @@ const Calendar = ({setStartDate, setEndDate}) => {
     }, []);
 
     return (
-        <section className="form-container__form">
+        <motion.section className="form-container__form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{duration: 1}}
+        >
             <Typography variant="h2" gutterBottom className='search-section__header'>📅 When do you want to go?</Typography>
             <div className='search-section__body'>
             <DateRange
@@ -42,7 +47,7 @@ const Calendar = ({setStartDate, setEndDate}) => {
             rangeColors={["#50E3C2"]}
             />;
             </div>
-        </section>
+        </motion.section>
     );
 };
 

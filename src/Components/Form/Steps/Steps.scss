@@ -1,4 +1,6 @@
 @use '../../../styles/partials/mixins' as *;
+@use '../../../styles/partials/variables' as *;
+
 .step-button{
     position: relative;
     display: flex;
@@ -23,4 +25,15 @@
     flex-direction: column;
     text-align: center;
     gap: 6.25rem;
+}
+.generate-button{
+    background-color: $color-teal;
+    color: white;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: .625rem;
+    max-width: 150px;
 }

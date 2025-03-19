@@ -1,4 +1,5 @@
 import {FormControl, FormControlLabel, FormGroup, FormLabel, Checkbox, Typography} from '@mui/material'
+import {motion} from 'framer-motion';
 
 const StayAndTravel = ({accommodation, setAccommodation, transportation, setTransportation}) => {
     const handleAccommodationChange = (event) => {
@@ -16,7 +17,11 @@ const StayAndTravel = ({accommodation, setAccommodation, transportation, setTran
     };
 
     return (
-        <div className="form-container__form">
+        <motion.section className="form-container__form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{duration: 1}}
+        >
             <Typography variant="h2" gutterBottom className='search-section__header'>🏠 Stay & Travel</Typography>
             <div className='search-section__body'>
                 <FormControl component="fieldset" variant="standard">
@@ -58,7 +63,7 @@ const StayAndTravel = ({accommodation, setAccommodation, transportation, setTran
                     </FormGroup>
                 </FormControl>
             </div>
-        </div>
+        </motion.section>
     );
 };
 

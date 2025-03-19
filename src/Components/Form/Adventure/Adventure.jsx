@@ -1,4 +1,5 @@
 import { FormControl, FormLabel, FormGroup, Checkbox, Radio, RadioGroup, FormControlLabel, Typography } from '@mui/material';
+import {motion} from 'framer-motion';
 
 const Adventure = ({adventure, setAdventure, pace, setPace}) => {
     const { relaxation, thrill, culture, food, nature, nightlife, offTheGrid } = adventure;
@@ -15,7 +16,11 @@ const Adventure = ({adventure, setAdventure, pace, setPace}) => {
 
 
     return (
-        <section className="form-container__form">
+        <motion.section className="form-container__form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{duration: 1.5}}
+        >
         <Typography variant="h2" gutterBottom className='search-section__header'>🎯  Adventure Style</Typography>
         <div className='search-section__body'>
             <FormControl component="fieldset" variant="standard" error={error}>
@@ -40,7 +45,7 @@ const Adventure = ({adventure, setAdventure, pace, setPace}) => {
                 </RadioGroup>
             </FormControl>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

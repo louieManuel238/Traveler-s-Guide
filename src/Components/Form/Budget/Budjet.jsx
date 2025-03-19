@@ -1,8 +1,13 @@
 import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Typography } from "@mui/material";
+import {motion} from 'framer-motion';
 
 const Budget = ({setBudget, budget}) => {
     return (
-        <section className="form-container__form">
+        <motion.section className="form-container__form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{duration: 1}}
+        >
             <Typography variant="h2" gutterBottom className='search-section__header'>💰 Budget Vibes</Typography>
             <FormControl className="search-section__body">
                 <FormLabel>Spending Style:</FormLabel>
@@ -12,7 +17,7 @@ const Budget = ({setBudget, budget}) => {
                     <FormControlLabel value="luxury" control={<Radio />} label="Luxury Seeker 💎" />
                 </RadioGroup>
             </FormControl>
-        </section>
+        </motion.section>
     );
 };
 
