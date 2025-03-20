@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import Itinerary from '../../Components/Itinerary/Itinerary';
 import Map from '../../Components/Maps/Maps';
 import './ItinerarySection.scss';
@@ -178,8 +178,10 @@ const data1 = {
     "Title": "Kyoto Solo Travel Itinerary",
     "NoteForItinerary": "This itinerary focuses on relaxation, culture, and food, suitable for a solo traveler on a budget, staying in hostels, with a balanced pace. Transportation is flexible. No dietary restrictions considered."
 }
+
 const ItinerarySection = ({data}) => {
-    
+    const [filteredActivityByDay,setFilteredActivityByDay] = useState([]);
+    console.log(filteredActivityByDay)
     return (
         <div className='itinerary-map'>
             {data && Object.keys(data).length !== 0 &&
@@ -190,8 +192,8 @@ const ItinerarySection = ({data}) => {
            
             {/* {data && Object.keys(data).length !== 0 && <Itinerary data={data} />} */}
 
-            <Map data={data} />
-            {data && Object.keys(data).length !== 0 && <Itinerary data={data}/>}
+            <Map data={data} filteredActivityByDay={filteredActivityByDay}/>
+            {data && Object.keys(data).length !== 0 && <Itinerary data={data} setFilteredActivityByDay={setFilteredActivityByDay}/>}
       
         </div>
     );

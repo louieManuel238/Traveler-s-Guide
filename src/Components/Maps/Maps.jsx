@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import {DoubleArrowUp} from '../SVG/Arrow'
 import './Maps.scss';
-const Map = ({data}) => {
-  
+const Map = ({data, filteredActivityByDay}) => {
+  console.log(filteredActivityByDay);
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
@@ -41,26 +41,38 @@ const Map = ({data}) => {
 
         markersRef.current.forEach(marker => marker.setMap(null));
         markersRef.current = [];
-
-        if (data && Object.keys(data).length !== 0) {
-          let firstPosition = null;
-          data.Activities.forEach((item) => {
-            if (item.activity) {
-              item.activity.forEach((activity) => {
-                const position = new LatLng(activity.location);
-                const marker = new AdvancedMarkerElement({
-                  map: mapInstanceRef.current,
-                  position: position,
+        if(filteredActivityByDay.length==0){
+            if (data && Object.keys(data).length !== 0) {
+            let firstPosition = null;
+            data.Activities.forEach((item) => {
+              if (item.activity) {
+                item.activity.forEach((activity) => {
+                  const position = new LatLng(activity.location);
+                  const marker = new AdvancedMarkerElement({
+                    map: mapInstanceRef.current,
+                    position: position,
+                  });
+                  markersRef.current.push(marker)
+                  if (!firstPosition) {
+                    firstPosition = position;
+                  }
                 });
-                 markersRef.current.push(marker)
-                 if (!firstPosition) {
-                  firstPosition = position;
-                }
-              });
+              }
+            })
+            if (firstPosition) {
+              mapInstanceRef.current.setCenter(firstPosition);
             }
-          })
-          if (firstPosition) {
-            mapInstanceRef.current.setCenter(firstPosition);
+          }
+        }
+        else{
+          for(const activity of filteredActivityByDay){
+            const position = new LatLng(activity.location);
+            const marker = new AdvancedMarkerElement({
+              map: mapInstanceRef.current,
+              position: position,
+            });
+            mapInstanceRef.current.panTo(position);
+            markersRef.current.push(marker)
           }
         }
       } catch (error) {
@@ -69,7 +81,7 @@ const Map = ({data}) => {
     }
     if (mapInstanceRef.current) placeMarkers();
     
-  },[data])
+  },[data, filteredActivityByDay])
 
 
   
