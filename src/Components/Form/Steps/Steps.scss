@@ -25,6 +25,13 @@
     flex-direction: column;
     text-align: center;
     gap: 6.25rem;
+    &__form{
+        height: 70vh;
+        @include desktop{
+            height: 560px;
+        }
+        
+    }
 }
 .generate-button{
     background-color: $color-teal;

@@ -34,7 +34,7 @@ const Calendar = ({setStartDate, setEndDate}) => {
             transition={{duration: 1}}
         >
             <Typography variant="h2" gutterBottom className='search-section__header'>📅 When do you want to go?</Typography>
-            <div className='search-section__body'>
+            <div className='search-section__body--calendar'>
             <DateRange
             onChange={item => setState([item.selection])}
             showSelectionPreview={true}

@@ -1,53 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './AutoCompleteAddressSearch.scss';
 import {TextField, ListItemButton, ListItemText, ListItem, List} from '@mui/material';
 import {RoomIcon} from '../../SVG/Marker';
 
 
 const AutoCompleteAddressSearch = ({setPlace}) => {
-    
-    // const searchBarRef = useRef(null);
-    // const [isPlacesLibraryLoaded, setIsPlacesLibraryLoaded] = useState(false);
-    // const placeAutocomplete = useRef(null);
-    
-    // useEffect(() => {
-    //   async function loadPlacesLibrary() {
-    //     if (!isPlacesLibraryLoaded) {
-    //       try {
-    //         await google.maps.importLibrary("places");
-    //         setIsPlacesLibraryLoaded(true);
-    //       } catch (error) {
-    //         console.error("Error loading places library:", error);
-    //       }
-    //     }
-    //   }
-    //   loadPlacesLibrary();
-     
-    // }, [isPlacesLibraryLoaded]);
-
-    // useEffect(() => {
-    //     if (isPlacesLibraryLoaded) {
-    //         if(!placeAutocomplete.current){
-    //             placeAutocomplete.current = new google.maps.places.PlaceAutocompleteElement();
-    //             if (searchBarRef.current) {
-    //                 searchBarRef.current.addEventListener('gmp-placeselect', async ({place}) => {
-    //                     await place.fetchFields({fields: ["displayName", "formattedAddress", "location"],
-    //                       types: ['country', 'locality']}
-    //                     )
-    //                     setPlace(JSON.stringify(place.toJSON(), null,2,))
-    //                 });
-    //                 searchBarRef.current.appendChild(placeAutocomplete.current);
-    //             }
-    //         }
-    //     }
-    //     return () => {
-    //         if (placeAutocomplete.current && searchBarRef.current && searchBarRef.current.contains(placeAutocomplete.current)) {
-    //             searchBarRef.current.removeChild(placeAutocomplete.current);
-    //             placeAutocomplete.current = null;
-    //         }
-    //     };
-    // }, [isPlacesLibraryLoaded]);
-    ///---------------------------------
+ 
     const [input, setInput] = useState("");
     const [predictions, setPredictions] = useState([]);
     useEffect(()=>{
@@ -77,8 +35,6 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
 
     return (
       <>
-        {/* <div id='search-bar' className='search-section__search-bar' ref={searchBarRef}></div> */}
-      
         <div className='address-search'>
           <RoomIcon className="address-search__icon" />
           <TextField className="address-search__bar" label="Country/City" variant="outlined"    
@@ -97,7 +53,6 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
               </ListItem>;
             })}
           </List>
-     
         </>
     );
 };

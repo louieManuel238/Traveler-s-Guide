@@ -1,5 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import schema from './schema.json';
 import axios from "axios";
 
 class GeminiAI{

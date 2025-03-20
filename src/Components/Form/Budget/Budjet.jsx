@@ -9,7 +9,8 @@ const Budget = ({setBudget, budget}) => {
             transition={{duration: 1}}
         >
             <Typography variant="h2" gutterBottom className='search-section__header'>💰 Budget Vibes</Typography>
-            <FormControl className="search-section__body">
+            <div  className="search-section__body">
+            <FormControl>
                 <FormLabel>Spending Style:</FormLabel>
                 <RadioGroup value={budget} onChange={(e)=>setBudget(e.target.value)}>
                     <FormControlLabel value="budget" control={<Radio/>} label="Budget Backpacker 🎒" />
@@ -17,6 +18,7 @@ const Budget = ({setBudget, budget}) => {
                     <FormControlLabel value="luxury" control={<Radio />} label="Luxury Seeker 💎" />
                 </RadioGroup>
             </FormControl>
+            </div>
         </motion.section>
     );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import {ArrowIcon} from '../../assets/SVG.jsx'
+import {DoubleArrowUp} from '../SVG/Arrow'
 import './Maps.scss';
 const Map = ({data}) => {
   
@@ -43,6 +43,7 @@ const Map = ({data}) => {
         markersRef.current = [];
 
         if (data && Object.keys(data).length !== 0) {
+          let firstPosition = null;
           data.Activities.forEach((item) => {
             if (item.activity) {
               item.activity.forEach((activity) => {
@@ -51,10 +52,16 @@ const Map = ({data}) => {
                   map: mapInstanceRef.current,
                   position: position,
                 });
-                 markersRef.current.push(marker)   
+                 markersRef.current.push(marker)
+                 if (!firstPosition) {
+                  firstPosition = position;
+                }
               });
             }
           })
+          if (firstPosition) {
+            mapInstanceRef.current.setCenter(firstPosition);
+          }
         }
       } catch (error) {
         console.error("Error placing markers:", error);
@@ -70,7 +77,7 @@ const Map = ({data}) => {
       <div className="map-container">
       <div className="map-container__arrow">
         <a href="#main-content">
-          <ArrowIcon/>
+          <DoubleArrowUp/>
         </a>
         </div>
       

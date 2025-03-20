@@ -21,3 +21,18 @@
         // justify-content: center;
     }
 }
+
+.search-section{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    &__search-form{
+
+    }
+    &__body{
+        text-align: justify;
+        @include tablet{
+            text-align: center;
+        }
+    }
+}
