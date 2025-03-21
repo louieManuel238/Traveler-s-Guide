@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState  } from "react";
+import { useEffect, useRef, useState} from "react";
 import {DoubleArrowUp} from '../SVG/Arrow'
 import './Maps.scss';
+
 const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
+  const [markerSelected,setMarkerSelected] = useState();
   const center = { lat: 37.4161493, lng: -122.0812166 };
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
     async function placeMarkers() {
       try {
         if (!mapInstanceRef.current) return;
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        const { AdvancedMarkerElement, PinElement} = await google.maps.importLibrary("marker");
         // const {InfoWindow } = await google.maps.importLibrary("maps");
         const { LatLng } = await google.maps.importLibrary("core");
 
@@ -61,14 +63,21 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
         activities.forEach((activity)=>{
           const position = new LatLng(activity.location);
+          const pinColor = new PinElement({
+            background: '#50E3C2',
+            borderColor: '#29967e',
+            glyphColor: "white",
+          })
             const marker = new AdvancedMarkerElement({
               map: mapInstanceRef.current,
               position: position,
               title: activity.place,
-              gmpClickable: true
+              content: pinColor.element,
+              gmpClickable: true,
+
             });
             marker.addListener('gmp-click',()=>{
-              mapInstanceRef.current.setZoom(15);
+              mapInstanceRef.current.setZoom(20);
               mapInstanceRef.current.panTo(marker.position);
             });
             markersRef.current.push(marker)
@@ -105,15 +114,31 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
   //Pan to location when activity on side panel is clicked
   useEffect(()=>{
+   
     async function panToLocation(){
       const { LatLng } = await google.maps.importLibrary("core");
+      const { PinElement} = await google.maps.importLibrary("marker"); 
       const position = new LatLng(placeMarkerPan.location);
-      // mapInstanceRef.current.setZoom(15);
+      const pinSize = new PinElement({
+        scale: 1.5,
+        background: '#50E3C2',
+        borderColor: '#29967e',
+        glyphColor: "white",
+      })
+      const pinRegular = new PinElement({
+        background: '#50E3C2',
+        borderColor: '#29967e',
+        glyphColor: "white",
+      })
+      // mapInstanceRef.current.setZoom(12); <--- causing an issue
       mapInstanceRef.current.panTo(position);
       const marker = markersRef.current.find(marker => marker.position.lat === placeMarkerPan.location.lat && marker.position.lng === placeMarkerPan.location.lng);
-      // console.log(marker.background)
+      marker.content = pinSize.element;
+      if(marker != markerSelected) markerSelected.content = pinRegular.element;
+      setMarkerSelected(marker);
     } 
     if(placeMarkerPan!=null) panToLocation();
+    
   },[placeMarkerPan])
 
     return(
