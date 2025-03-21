@@ -20,7 +20,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
           center: center,
           zoom: 4,
           minZoom: 2,
-          maxZoom: 12,
+          maxZoom: 18,
           mapId: import.meta.env.VITE_MAP_ID,
           restriction: {
             latLngBounds: {north: 85, south: -85, west: -180, east: 180},
@@ -63,23 +63,39 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
         activities.forEach((activity)=>{
           const position = new LatLng(activity.location);
-          const pinColor = new PinElement({
+          const pinRegular = new PinElement({
             background: '#50E3C2',
             borderColor: '#29967e',
             glyphColor: "white",
           })
-            const marker = new AdvancedMarkerElement({
-              map: mapInstanceRef.current,
-              position: position,
-              title: activity.place,
-              content: pinColor.element,
-              gmpClickable: true,
-
+          const marker = new AdvancedMarkerElement({
+            map: mapInstanceRef.current,
+            position: position,
+            title: activity.place,
+            content: pinRegular.element,
+            gmpClickable: true,
+          });
+          marker.addListener('gmp-click',()=>{
+            const pinSize = new PinElement({
+              scale: 1.5,
+              background: '#50E3C2',
+              borderColor: '#29967e',
+              glyphColor: "white",
+            })
+            //reset all marker size
+            markersRef.current.forEach(marker => {
+              const resetPin = new PinElement({
+                background: '#50E3C2',
+                borderColor: '#29967e',
+                glyphColor: "white",
+              });
+              marker.content = resetPin.element;
             });
-            marker.addListener('gmp-click',()=>{
-              mapInstanceRef.current.setZoom(20);
-              mapInstanceRef.current.panTo(marker.position);
-            });
+            
+            marker.content = pinSize.element;
+            mapInstanceRef.current.setZoom(12);
+            mapInstanceRef.current.panTo(marker.position);
+          });
             markersRef.current.push(marker)
             if (!firstPosition) firstPosition = position;   
         });
@@ -94,7 +110,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
   },[data, filteredActivityByDay])
 
- // 📌 Fix zoom/pan rendering issues
+//  📌 Fix zoom/pan rendering issues
   useEffect(() => {
     if (!mapInstanceRef.current) return;
 
@@ -130,7 +146,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
         borderColor: '#29967e',
         glyphColor: "white",
       })
-      // mapInstanceRef.current.setZoom(12); <--- causing an issue
+       mapInstanceRef.current.setZoom(12); //<--- causing an issue
       mapInstanceRef.current.panTo(position);
       const marker = markersRef.current.find(marker => marker.position.lat === placeMarkerPan.location.lat && marker.position.lng === placeMarkerPan.location.lng);
       marker.content = pinSize.element;
@@ -140,6 +156,8 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
     if(placeMarkerPan!=null) panToLocation();
     
   },[placeMarkerPan])
+
+
 
     return(
       <div className="map-container">
