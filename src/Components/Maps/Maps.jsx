@@ -134,7 +134,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
       mapInstanceRef.current.panTo(position);
       const marker = markersRef.current.find(marker => marker.position.lat === placeMarkerPan.location.lat && marker.position.lng === placeMarkerPan.location.lng);
       marker.content = pinSize.element;
-      if(marker != markerSelected) markerSelected.content = pinRegular.element;
+      if(markerSelected && marker !== markerSelected) markerSelected.content = pinRegular.element;
       setMarkerSelected(marker);
     } 
     if(placeMarkerPan!=null) panToLocation();
