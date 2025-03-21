@@ -2,7 +2,7 @@
 import {Typography, Box, List, ListItemButton, ListItemText, Collapse} from '@mui/material'
 import React, { useState, Fragment } from 'react';
 import './Itinerary.scss'
-const Itinerary = ({data, setFilteredActivityByDay}) => {
+const Itinerary = ({data, setFilteredActivityByDay, setPlaceMarkerPan}) => {
 
     const [openIndex, setOpenIndex] = useState(null);
 
@@ -30,7 +30,7 @@ const Itinerary = ({data, setFilteredActivityByDay}) => {
                             <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                                 <ul className='travel-day__collapse'>
                                     {day.activity.map((act, actIndex) => (
-                                        <li key={actIndex} className='travel-day__places'>
+                                        <li key={actIndex} className='travel-day__places' onClick={()=>setPlaceMarkerPan(act)}>
                                             <p className='travel-day__name'>{act.place}</p>
                                             <p className='travel-day__description'>{act.description}</p>
                                         </li>

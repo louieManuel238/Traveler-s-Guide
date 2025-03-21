@@ -11,7 +11,7 @@ import Steps from '../Form/Steps/Steps.jsx';
 import Calendar from '../Form/Calendar/Calendar.jsx';
 
 const CreateSearch = ({setJsonResult}) => {
-    
+    const [isLoading, setIsLoading] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [place, setPlace] = useState({});
@@ -69,12 +69,18 @@ const CreateSearch = ({setJsonResult}) => {
 
     const submitSearch = (event)=>{
         event.preventDefault();
-
-      console.log(message);
-
-        setJsonResult(
-            async()=> await geminiAPI.GenerateNewResponse(message)
-        )
+        setIsLoading(true);
+        try{
+            const fetchResult = async () => {
+                const result = await geminiAPI.GenerateNewResponse(message);
+                setJsonResult(result);
+                setIsLoading(false);
+            };
+            fetchResult();
+        }catch(error){
+            console.error("Failed to fetch itinerary:", error)
+            setIsLoading(false);
+        }
     }
     return (
         <section className='search-section'>
@@ -92,6 +98,7 @@ const CreateSearch = ({setJsonResult}) => {
                 dietaryRestrictions={dietaryRestrictions} specialRequirements={specialRequirements}/>
               ]}
               submit={submitSearch}
+              isLoading={isLoading}
             />
               
 

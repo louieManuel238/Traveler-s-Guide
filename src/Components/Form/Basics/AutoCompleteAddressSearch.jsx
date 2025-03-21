@@ -24,7 +24,6 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
       }
       if(input)autoComplete();
       else setPredictions([])
-      console.log("useEff")
     },[input])
 
     const handleSelect = (item) => {

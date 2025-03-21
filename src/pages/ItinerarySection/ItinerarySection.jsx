@@ -181,7 +181,8 @@ const data1 = {
 
 const ItinerarySection = ({data}) => {
     const [filteredActivityByDay,setFilteredActivityByDay] = useState([]);
-    console.log(filteredActivityByDay)
+    const [placeMarkerPan, setPlaceMarkerPan] = useState();
+
     return (
         <div className='itinerary-map'>
             {data && Object.keys(data).length !== 0 &&
@@ -192,8 +193,12 @@ const ItinerarySection = ({data}) => {
            
             {/* {data && Object.keys(data).length !== 0 && <Itinerary data={data} />} */}
 
-            <Map data={data} filteredActivityByDay={filteredActivityByDay}/>
-            {data && Object.keys(data).length !== 0 && <Itinerary data={data} setFilteredActivityByDay={setFilteredActivityByDay}/>}
+            <Map data={data} filteredActivityByDay={filteredActivityByDay} placeMarkerPan={placeMarkerPan}/>
+            {data && Object.keys(data).length !== 0 && 
+                <Itinerary data={data} 
+                    setFilteredActivityByDay={setFilteredActivityByDay}
+                    setPlaceMarkerPan={setPlaceMarkerPan}
+                />}
       
         </div>
     );
