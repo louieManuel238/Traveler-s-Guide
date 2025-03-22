@@ -48,12 +48,6 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
 
 ## Mockups  
 
-![Mockup 1](https://github.com/user-attachments/assets/5fa24940-6c18-4a4a-81c3-243830c311ac)  
-![Mockup 2](https://github.com/user-attachments/assets/24257313-d07f-49a7-ba5b-60c0fc6e231d)  
-![Mockup 3](https://github.com/user-attachments/assets/01d4e998-022e-42cd-b8ae-d860805d0a0e)  
-![Mockup 4](https://github.com/user-attachments/assets/8fa73330-aa89-40cb-9b38-e58a73f1b643)  
-![Mockup 5](https://github.com/user-attachments/assets/d1f9e18b-df43-4b52-88e4-70c58bfdfb36)  
-
 ![Screenshot 2025-03-22 140151](https://github.com/user-attachments/assets/57b2f563-199a-4029-98d0-7d0da843b629)
 ![Screenshot 2025-03-22 135758](https://github.com/user-attachments/assets/e77be692-2acc-430b-b77e-580f7183c410)
 
@@ -72,8 +66,8 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
 
 ## API Endpoints (https://github.com/louieManuel238/Traveler-s-Guide-Backend)  
 
-📌 **GET /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt 
-📌 **POST /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt  
+-📌 **GET /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt
+-📌 **POST /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt  
 
 ## Roadmap  
 
