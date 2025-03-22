@@ -65,7 +65,6 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
 - Generated **itinerary** By Gemini and Places API
 
 ## API Endpoints (https://github.com/louieManuel238/Traveler-s-Guide-Backend)  
-
 -📌 **GET /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt
 -📌 **POST /api/gemini/itinerary** → Creates a new itinerary based on a user-provided prompt  
 
@@ -106,11 +105,12 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
    ```sh
    git clone https://github.com/louiemanuel238/travelers-guide.git
 
- 🔹Get your Places API Key
+2. Get your Places API Key:
       **https://developers.google.com/maps/documentation/javascript/get-api-key
 
-🔹Get your Google Gemini Key
+3. Get your Google Gemini Key:
       **https://aistudio.google.com/apikey
-🔹.env
+   
+5. .env:
       PLACES_API_KEY="YOUR API KEY"
       GEMINI_API_KEY="YOUR API KEY"
