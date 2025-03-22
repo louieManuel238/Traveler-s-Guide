@@ -1,47 +1,109 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './CreateSearch.scss';
 import GeminiAI from '../../api/gemini.js';
-
-import AutoCompleteAddressSearch from './AutoCompleteAddressSearch';
-import DateRange from './DateRange';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import Basics from '../Form/Basics/Basics.jsx';
+import Budget from '../Form/Budget/Budjet.jsx';
+import Squad from '../Form/Squad/Squad.jsx';
+import Adventure from '../Form/Adventure/Adventure.jsx';
+import StayAndTravel from '../Form/StayAndTravel/StayAndTravel.jsx';
+import OtherPreference from '../Form/OtherPreference/OtherPreference.jsx';
+import Steps from '../Form/Steps/Steps.jsx';
+import Calendar from '../Form/Calendar/Calendar.jsx';
 
 const CreateSearch = ({setJsonResult}) => {
-    
+    const [isLoading, setIsLoading] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [place, setPlace] = useState({});
-    const [preference, setPreference] = useState([]);
+    const [budget, setBudget] = useState("");
+    const [squad, setSquad] = useState("");
+    const [pace, setPace] =useState("")
+    const [accommodation, setAccommodation] = useState({
+        hostel: false,
+        boutique: false,
+        luxury: false,
+        quirky: false,
+    });
+
+    const [transportation, setTransportation] = useState({
+        flights: false,
+        trains: false,
+        roadTrip: false,
+    });
+    const [dietaryRestrictions, setDietaryRestrictions] = useState({
+        vegetarian: false,
+        vegan: false,
+        glutenFree: false,
+    });
+
+    const [specialRequirements, setSpecialRequirements] = useState({
+        accessibility: false,
+        petFriendly: false,
+        kidFriendly: false,
+    });
+    const [adventure, setAdventure] = useState({
+        relaxation: false,
+        thrill: false,
+        culture: false,
+        food: false,
+        nature: false,
+        nightlife: false,
+        offTheGrid: false
+      });
+
     const geminiAPI = new GeminiAI();
+
+    const message = {
+        place: place,
+        startDate: startDate,
+        endDate: endDate,
+        budget: budget,
+        squad: squad,
+        adventure: adventure,
+        pace: pace,
+        accommodation: accommodation,
+        transportation: transportation,
+        dietaryRestrictions: dietaryRestrictions,
+        specialRequirements: specialRequirements
+    }
 
     const submitSearch = (event)=>{
         event.preventDefault();
-        const prompt = `Create a travel itinerary to ${place} 
-        from ${startDate} to ${endDate}
-        focus on ${preference} include top attractions. 
-        return only specific place for activities with a location`;
-        setJsonResult(
-            async()=> await geminiAPI.GenerateResponse(prompt)
-        )
+        setIsLoading(true);
+        try{
+            const fetchResult = async () => {
+                const result = await geminiAPI.GenerateNewResponse(message);
+                setJsonResult(result);
+                setIsLoading(false);
+                console.log(result)
+            };
+            fetchResult();
+        }catch(error){
+            console.error("Failed to fetch itinerary:", error)
+            setIsLoading(false);
+        }
     }
     return (
         <section className='search-section'>
-            <h2 className='search-section__header'>Where do you want to go?</h2>
             <form className='search-section__search-form'>
-                <AutoCompleteAddressSearch setPlace={setPlace}/>
-                <DateRange 
-                    startDate={startDate} setStartDate={setStartDate}
-                    endDate={endDate} setEndDate={setEndDate}
-                    />
+              
+            <Steps steps={[
+                <Basics setPlace={setPlace}/>,
+                <Calendar  setStartDate={setStartDate} setEndDate={setEndDate}/>,
+                <Budget setBudget={setBudget} budget={budget}/>,
+                <Squad setSquad={setSquad} squad={squad}/>,
+                <Adventure setPace={setPace} setAdventure={setAdventure} adventure={adventure} pace={pace}/>,
+                <StayAndTravel setAccommodation={setAccommodation} setTransportation={setTransportation} 
+                accommodation={accommodation} transportation={transportation}/>,
+                <OtherPreference setDietaryRestrictions={setDietaryRestrictions} setSpecialRequirements={setSpecialRequirements} 
+                dietaryRestrictions={dietaryRestrictions} specialRequirements={specialRequirements}/>
+              ]}
+              submit={submitSearch}
+              isLoading={isLoading}
+            />
+              
 
-        <FormGroup>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-            <FormControlLabel required control={<Checkbox />} label="Required" />
-            <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
-        </FormGroup>
-                <button type='submit' onClick={submitSearch}>Generate Itenerary</button>
+                
             </form>
         </section>
         

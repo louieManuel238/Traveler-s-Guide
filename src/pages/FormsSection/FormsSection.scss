@@ -1,0 +1,38 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main-content{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: $color-white-50;
+    &__container{
+        width: 100%;
+        padding: 0 1rem;
+        max-width: 1020px;
+        margin: auto;
+        height: 90vh;
+        @include tablet{
+            height: auto;
+        }
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+    }
+}
+
+.search-section{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    &__search-form{
+
+    }
+    &__body{
+        text-align: justify;
+        @include tablet{
+            text-align: center;
+        }
+    }
+}

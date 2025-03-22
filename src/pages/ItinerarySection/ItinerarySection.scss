@@ -1,0 +1,21 @@
+@use '../../styles/partials/mixins' as *;
+.itinerary-map{
+  position: relative;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-flow: column wrap;
+  
+  @include desktop{
+    height: 100vh;
+    flex-flow: row-reverse;
+  }
+}
+.itinerary-panel__header{
+  order: 1;
+  @include desktop{
+    width: 100%;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+  }
+}

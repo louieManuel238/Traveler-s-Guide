@@ -1,0 +1,18 @@
+.prediction{
+
+}
+.address-search{
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    &__icon{
+        flex: 1 1 10%;
+    }
+    &__bar{
+        flex: 1 1 90%;
+    }
+    &__list{
+       padding-left: 10%;
+    }
+}

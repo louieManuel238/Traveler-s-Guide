@@ -1,0 +1,59 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+.itinerary-panel{
+    order: 2;
+    &__header{
+        padding-top: 2rem;
+    }
+    &__sub-header{
+        font-size: 1.25rem;
+        @include desktop{
+            width: 90%;
+        }
+    }
+    &__body{
+        padding-top: 3rem;
+        @include desktop{
+            padding: 0;
+        }
+    }
+    @include desktop{
+        position: relative;
+        margin-top: 300px;
+    }
+}
+.itinerary-list{
+    padding: 2rem 0;
+    @include desktop{
+        width: 600px;
+        padding-top: 0;
+    }
+    &__item{
+        padding: .5rem 0;
+        box-shadow: 0 4px 8px $color-gray-600;
+        background-color: $color-white-50;
+    } 
+    &__date{
+        font-size: 1.25rem;
+        flex-shrink: 0;
+
+    }
+    &__description{
+        font-size: 1.1rem;
+    }
+}
+.travel-day{
+    display: flex;
+    gap: 1.2rem;
+    
+    flex: 1 1 100%;
+    &__places{
+        background-color: $color-white-20;
+    }
+    &__name{
+        font-weight: bold;
+    }
+    &__description{
+        color: $color-black-800;
+    }
+}

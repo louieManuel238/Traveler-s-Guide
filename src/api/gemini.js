@@ -1,26 +1,21 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import schema from './schema.json';
+import axios from "axios";
 
 class GeminiAI{
     constructor(){
-        this.API_KEY = import.meta.env.VITE_GOOGLE_GENERATIVE_LANGUAGE_API_KEY;
-        this.schema = schema;
     }
-    async GenerateResponse(prompt){
-        const genAI = new GoogleGenerativeAI(this.API_KEY);
-    
-        const model = genAI.getGenerativeModel({ 
-            model: "gemini-2.0-flash" ,
-            generationConfig:{
-            responseMimeType: "application/json",
-            responseSchema: this.schema,
-          },
+    async GenerateNewResponse(prompt){
+        const url = `http://localhost:8080/api/gemini/itinerary`;
+        try{
+            const response = await axios.post(url, {"message":prompt});
+            return response.data;
+        }catch(error){
+            console.error('Error fetching itinerary:', error);
+            throw error;
+        }
         
-        });
-        const result = await model.generateContent(prompt);
-        return JSON.parse(result.response.text());
-    } 
+    }
 }
+
 
 
 
