@@ -107,10 +107,10 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
 
 2. Get your Places API Key:
       **https://developers.google.com/maps/documentation/javascript/get-api-key
-
-3. Get your Google Gemini Key:
-      **https://aistudio.google.com/apikey
    
-5. .env:
-      PLACES_API_KEY="YOUR API KEY"
-      GEMINI_API_KEY="YOUR API KEY"
+3. .env:
+      VITE_GOOGLE_MAPS_API_KEY="YOUR_API_KEY"
+   
+5. Clone Backend repository
+   ```sh
+   git clone https://github.com/louieManuel238/Traveler-s-Guide-Backend.git
