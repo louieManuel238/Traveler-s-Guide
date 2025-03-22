@@ -5,7 +5,7 @@ import './Maps.scss';
 const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
-  const markersRef = useRef([]);
+  const markersRef = useRef(new Set([]));
   const [markerSelected,setMarkerSelected] = useState();
   const center = { lat: 37.4161493, lng: -122.0812166 };
 
@@ -51,7 +51,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
         // Remove old markers
         markersRef.current.forEach(marker => marker.setMap(null));
-        markersRef.current = [];
+        markersRef.current = new Set([]);
         let firstPosition = null;
         
         const activities = filteredActivityByDay.length > 0 
@@ -91,12 +91,12 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
               });
               marker.content = resetPin.element;
             });
-            
+
             marker.content = pinSize.element;
-            mapInstanceRef.current.setZoom(12);
+            // mapInstanceRef.current.setZoom(12);
             mapInstanceRef.current.panTo(marker.position);
           });
-            markersRef.current.push(marker)
+            markersRef.current.add(marker)
             if (!firstPosition) firstPosition = position;   
         });
 
@@ -110,7 +110,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
   },[data, filteredActivityByDay])
 
-//  📌 Fix zoom/pan rendering issues
+//  Fix zoom/pan rendering issues
   useEffect(() => {
     if (!mapInstanceRef.current) return;
 
@@ -146,9 +146,10 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
         borderColor: '#29967e',
         glyphColor: "white",
       })
-       mapInstanceRef.current.setZoom(12); //<--- causing an issue
+       mapInstanceRef.current.setZoom(12);
       mapInstanceRef.current.panTo(position);
-      const marker = markersRef.current.find(marker => marker.position.lat === placeMarkerPan.location.lat && marker.position.lng === placeMarkerPan.location.lng);
+      const iterator = markersRef.current.keys();
+      const marker = iterator.find(marker => marker.position.lat === placeMarkerPan.location.lat && marker.position.lng === placeMarkerPan.location.lng);
       marker.content = pinSize.element;
       if(markerSelected && marker !== markerSelected) markerSelected.content = pinRegular.element;
       setMarkerSelected(marker);

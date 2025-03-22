@@ -4,9 +4,7 @@ import './api/googleCaller';
 import IntroSection from './pages/IntroSection/IntroSection';
 import FormsSection from './pages/FormsSection/FormsSection';
 import ItinerarySection from './pages/ItinerarySection/ItinerarySection';
-
 import React, { useState, useEffect } from 'react';
-
 
 function App() {
 
@@ -24,7 +22,7 @@ function App() {
     <>
       <IntroSection/>
       <FormsSection setJsonResult={setJsonResult}/>
-       <ItinerarySection data={data}/>
+      <ItinerarySection data={data}/>
     </>
     );
 }
