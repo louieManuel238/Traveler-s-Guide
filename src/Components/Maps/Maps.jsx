@@ -46,21 +46,21 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
       try {
         if (!mapInstanceRef.current) return;
         const { AdvancedMarkerElement, PinElement} = await google.maps.importLibrary("marker");
-        // const {InfoWindow } = await google.maps.importLibrary("maps");
+        const {InfoWindow } = await google.maps.importLibrary("maps");
         const { LatLng } = await google.maps.importLibrary("core");
 
         // Remove old markers
         markersRef.current.forEach(marker => marker.setMap(null));
         markersRef.current = new Set([]);
         let firstPosition = null;
-        
+        const infoWindow = new InfoWindow();
         const activities = filteredActivityByDay.length > 0 
           ? filteredActivityByDay 
           : data?.Activities?.reduce((acc, item) => {
               if (item.activity) acc.push(...item.activity);
               return acc;
             }, []) || [];
-
+        
         activities.forEach((activity)=>{
           const position = new LatLng(activity.location);
           const pinRegular = new PinElement({
@@ -71,7 +71,7 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
           const marker = new AdvancedMarkerElement({
             map: mapInstanceRef.current,
             position: position,
-            title: activity.place,
+            title: `${activity.place} - ${activity.longDescription}`,
             content: pinRegular.element,
             gmpClickable: true,
           });
@@ -94,6 +94,11 @@ const Map = ({data, filteredActivityByDay, placeMarkerPan}) => {
 
             marker.content = pinSize.element;
             // mapInstanceRef.current.setZoom(12);
+ 
+            infoWindow.close();
+            infoWindow.setContent(marker.title);
+            infoWindow.open(marker.map, marker);
+
             mapInstanceRef.current.panTo(marker.position);
           });
             markersRef.current.add(marker)
