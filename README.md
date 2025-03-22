@@ -110,10 +110,17 @@ The primary users of **Traveler's Guide** are individuals or groups planning tri
    
 3. .env:
       VITE_GOOGLE_MAPS_API_KEY="YOUR_API_KEY"
-   
-4. Clone Backend repository
+
+4. Install the dependencies:
+    ```bash
+    npm install
+    ```
+6. Clone Backend repository
    ```sh
    git clone https://github.com/louieManuel238/Traveler-s-Guide-Backend.git
 
-5. Run this up through "npm run dev"
+7. Start the server:
+    ```bash
+    npm run dev
+    ```
 6. Run the Backend repository
