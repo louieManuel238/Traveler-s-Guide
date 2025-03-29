@@ -10,27 +10,25 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
     const [predictions, setPredictions] = useState([]);
     useEffect(()=>{
       const autoComplete = async () => {
-        const { AutocompleteService } = await google.maps.importLibrary("places");
-        const service = new AutocompleteService();
-        const request = {
+        const { AutocompleteSuggestion, AutocompleteSessionToken } = await google.maps.importLibrary("places");
+        const token = new AutocompleteSessionToken();
+        let request = {
           input,
-          types: ['(regions)']
+          includedPrimaryTypes: ['(regions)']
         };
-        service.getPlacePredictions(request, (predictions, status) => {
-           (status === google.maps.places.PlacesServiceStatus.OK)?
-             setPredictions(predictions):
-            console.error("AutocompleteService failed:", status);
-        });
+        request.sessionToken = token;
+        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+        setPredictions(suggestions);
       }
       if(input)autoComplete();
       else setPredictions([])
     },[input])
 
     const handleSelect = (item) => {
-        setPlace(item.description);
-        setInput(item.description);
-        setPredictions([]);
-    }
+      setPlace(item.placePrediction.text.toString());
+      setInput(item.placePrediction.text.toString());  
+      setPredictions([])
+    };
 
     return (
       <>
@@ -40,16 +38,14 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
             onChange={(e)=>{setInput(e.target.value)}} value={input}/>
         </div>
           <List className='address-search__list'>
-            {predictions.map((item) => {
-              return <ListItem key={item.place_id} className='prediction'>
-                <ListItemButton onClick={()=>handleSelect(item)} >
+            {predictions.map((item, index) => {
+                return <ListItem key={index} className='prediction'>
+                <ListItemButton onClick={() => { handleSelect(item)}}>
                   <ListItemText className='prediction--maintext' 
-                  primary={item.structured_formatting.main_text}
-                  secondary={item.structured_formatting.secondary_text}
+                  primary={item.placePrediction.text.toString()}
                   />
-                  {/* <ListItemText className='prediction--subtext'></ListItemText> */}
                 </ListItemButton>
-              </ListItem>;
+                </ListItem>;
             })}
           </List>
         </>

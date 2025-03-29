@@ -75,7 +75,6 @@ const CreateSearch = ({setJsonResult}) => {
                 const result = await geminiAPI.GenerateNewResponse(message);
                 setJsonResult(result);
                 setIsLoading(false);
-                console.log(result)
             };
             fetchResult();
         }catch(error){

@@ -15,9 +15,12 @@ const Calendar = ({setStartDate, setEndDate}) => {
           key: 'selection'
         }
       ]);
-      const [dates] = state;
-      setStartDate(dates.startDate);
-      setEndDate(dates.endDate);
+      useEffect(()=>{
+        const [dates] = state;
+        setStartDate(dates.startDate);
+        setEndDate(dates.endDate);
+      },[])
+      
 
     const [isMobileSize, setIsMobileSize] = useState(window.innerWidth < 700);
     const handleResize = () => setIsMobileSize(window.innerWidth < 700);
