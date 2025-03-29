@@ -14,13 +14,10 @@
     "@emotion/styled": "^11.14.0",
     "@google/generative-ai": "^0.22.0",
     "@mui/material": "^6.4.7",
-    "@mui/x-date-pickers": "^7.27.3",
     "axios": "^1.8.1",
     "framer-motion": "^12.4.7",
     "react": "^19.0.0",
-    "react-aria-components": "^1.6.0",
     "react-date-range": "^2.0.1",
-    "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
     "sass": "^1.85.1"
   },
