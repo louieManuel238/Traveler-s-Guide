@@ -18,6 +18,9 @@ function App() {
     };
     getData();
   }, [jsonResult]);
+  useEffect(() => {
+    console.log("VITE_MAP_ID:", import.meta.env.VITE_MAP_ID);
+  }, []);
   return (
     <>
       <IntroSection/>
@@ -26,5 +29,6 @@ function App() {
     </>
     );
 }
+
 
 export default App
