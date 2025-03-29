@@ -33,7 +33,7 @@ jobs:
           output_location: "dist" # Built app content directory - optional
         env:
             VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}  # Access GitHub Variables
-            VITE_MAP_ID: ${{ vars.VITE_MAP_ID }} # Access GitHub Variables
+            VITE_MAP_ID: ${{ secrets.VITE_MAP_ID }} # Access GitHub Variables
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
