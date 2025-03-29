@@ -1,4 +1,4 @@
-import './header.scss'
+import './Header.scss'
 import HeaderBackground from '../HeaderBackground/HeaderBackground.jsx';
 
  const Header = () => {
