@@ -4,7 +4,7 @@ class GeminiAI{
     constructor(){
     }
     async GenerateNewResponse(prompt){
-        const url = `http://localhost:8080/api/gemini/itinerary`;
+        const url = `https://travelers-guide-backend.azurewebsites.net/api/gemini/itinerary`;
         try{
             const response = await axios.post(url, {"message":prompt});
             return response.data;
