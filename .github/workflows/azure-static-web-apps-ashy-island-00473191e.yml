@@ -31,10 +31,6 @@ jobs:
           app_location: "/" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
-        env: # Add environment variables here
-          VITE_GOOGLE_MAPS_API_KEY: AIzaSyDvxTkSWLMyk5fNQDe72ziypxn1NlsKBzk
-          VITE_MAP_ID: 52393607aa8bdcea
-
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
