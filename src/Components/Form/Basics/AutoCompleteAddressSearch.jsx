@@ -5,11 +5,13 @@ import {RoomIcon} from '../../SVG/Marker';
 
 
 const AutoCompleteAddressSearch = ({setPlace}) => {
- 
     const [input, setInput] = useState("");
     const [predictions, setPredictions] = useState([]);
+    const [isSelecting, setIsSelecting] = useState(false);
+
     useEffect(()=>{
       const autoComplete = async () => {
+        
         const { AutocompleteSuggestion, AutocompleteSessionToken } = await google.maps.importLibrary("places");
         const token = new AutocompleteSessionToken();
         let request = {
@@ -20,14 +22,17 @@ const AutoCompleteAddressSearch = ({setPlace}) => {
         const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
         setPredictions(suggestions);
       }
-      if(input)autoComplete();
+      if(input && !isSelecting)autoComplete();
       else setPredictions([])
+      if (isSelecting) setIsSelecting(false);
+
     },[input])
 
     const handleSelect = (item) => {
       setPlace(item.placePrediction.text.toString());
       setInput(item.placePrediction.text.toString());  
-      setPredictions([])
+      setPredictions([]);
+      setIsSelecting(true);
     };
 
     return (

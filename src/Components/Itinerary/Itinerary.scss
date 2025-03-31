@@ -49,6 +49,7 @@
     flex: 1 1 100%;
     &__places{
         background-color: $color-white-20;
+        cursor: pointer;
     }
     &__name{
         font-weight: bold;
